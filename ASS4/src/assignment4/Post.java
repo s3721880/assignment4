@@ -33,7 +33,7 @@ public class Post {
 
 		// database location
 		String DatabasePath = "C:/Users/Kuro/Desktop/DataBase/";	
-		System.out.println("Enter Post Title");
+		System.out.println("Enter Post Title :");
 		String text = ".txt";;
 		
 		postTitle = scanner.nextLine();
@@ -66,7 +66,7 @@ public class Post {
 							
 							//Tags //
 							// Printing out difficulty choices
-							System.out.println("Enter Difficulty of Post");
+							System.out.println("Enter Difficulty of Post :");
 							for (int i = 0 ; i < postTypes.length ; i++) {
 								System.out.println(postTypes[i]);
 							}
@@ -91,7 +91,7 @@ public class Post {
 									for( int i=1 ; i< postTags.length ; i++) {
 										// adding the rest of the tags
 										String TagName = scanner.nextLine();
-										System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding):");
+										System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 										if( TagName.equals("Immediately Needed") || TagName.equals("Highly Needed")  ) {
 											System.out.println("Invalid Tag for Easy Difficulty post");
 											PostTF = false;
@@ -112,7 +112,7 @@ public class Post {
 									Write(Destination, "\n" );
 									
 										// writing body // 
-									System.out.println("Enter Post Body");
+									System.out.println("Enter Post Body :");
 									postBody = scanner.nextLine();
 									if(postBody.equals("string300")) {
 										Write(Destination, string300 );
@@ -128,7 +128,7 @@ public class Post {
 							}
 							else if(Difficulty.equals("Very Difficult") || Difficulty.equals("Difficult") ) {
 								// Print out urgency choices
-								System.out.println("Enter Urgency of Post");
+								System.out.println("Enter Urgency of Post :");
 								for (int i = 0 ; i < PostEmergency.length ; i++) {
 									System.out.println(PostEmergency[i]);
 								}
@@ -142,7 +142,7 @@ public class Post {
 								// adding the rest of the tags
 								for( int i=1 ; i< postTags.length ; i++) {
 									String TagName = scanner.nextLine();
-									System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding):");
+									System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 									if( TagName.equals("Ordinary")) {
 										System.out.println("Invalid Tag for Easy Difficulty post");
 										PostTF = false;
@@ -163,7 +163,7 @@ public class Post {
 								Write(Destination, "\n" );
 
 									// writing body // 
-								System.out.println("Enter Post Body");
+								System.out.println("Enter Post Body :");
 								postBody = scanner.nextLine();
 								if(postBody.equals("string300")) {
 									Write(Destination, string300 );
@@ -181,7 +181,7 @@ public class Post {
 							else {
 								System.out.println("Wrong Difficulty Entered");
 								// writing body // 
-							System.out.println("Enter Post Body");
+							System.out.println("Enter Post Body :");
 							postBody = scanner.nextLine();
 							if(postBody.equals("string300")) {
 								Write(Destination, string300 );
@@ -230,8 +230,8 @@ public class Post {
 					int count = 0;
 					// printing postComment size for debugging
 					System.out.println(postComments.size());
-		  for ( int i = 0 ; i <  capacity; i ++) {
-						System.out.println("Enter Comment " + count+1 + " : (type 'leave' to stop adding comments)");
+		  while ( count < capacity ) {
+						System.out.println("Enter Comment " + (count+1) + " : (type 'leave' to stop adding comments)");
 						Comment = scanner.nextLine();
 						int wordcount = 0;
 						// type leave to stop adding comments
@@ -266,14 +266,14 @@ public class Post {
 											Write(Destination,Comment);
 											// new line
 											Write(Destination, "\n" );
+											count++;	
 										}
 										else {
 											System.out.println("Comment word size not within 4 and 10 words");
 										}
 										
 									}
-					}
-				count++;				
+					}			
 				}
 	return true;
  } 
@@ -286,7 +286,7 @@ public class Post {
 		      BufferedWriter bw = new BufferedWriter(myWriter);
 		      bw.write(Input + "\n");
 		      bw.close();
-		      System.out.println("Successfully wrote to the file.");
+		     // for debugging System.out.println("Successfully wrote to the file.");
 		    } catch (IOException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
@@ -300,7 +300,8 @@ public class Post {
 		      if (myObj.createNewFile()) {
 		        System.out.println("File created: " + myObj.getName());
 		      } else {
-		        System.out.println("File already exists.");
+		        // do nothing
+		    	  // for debugging System.out.println("File already exists.");
 		      }
 		    } catch (IOException e) {
 		      System.out.println("An error occurred.");
@@ -310,7 +311,7 @@ public class Post {
 	
 
 	public void Menu() {
-		System.out.println("Press the following Number");
+		System.out.println("Press the following Number :");
 		System.out.println("1. Create New Post");
 		System.out.println("2. Add New Comment");
 		System.out.println("3. Show Post ID");
