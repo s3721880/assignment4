@@ -12,6 +12,8 @@ public class Post {
 	private  String postTitle;
 	private  String postBody;
 	private  String [] postTags;
+	private	String Type;
+	private String Emergency;
 	private  String [] postTypes = {"Very Difficult", "Difficult", "Easy"};
 	private  String [] PostEmergency = {"Immediately Needed", "Highly Needed", "Ordinary"};
 	private  ArrayList <String> postComments = new ArrayList<>();
@@ -72,40 +74,54 @@ public class Post {
 							}
 							
 							String Difficulty = scanner.nextLine();
-							
+							Type = Difficulty;
 							// add difficulty of post
 							if( Difficulty.equals("Easy")) {		
 								// Print out urgency choices
 								System.out.println("Enter Urgency of Post");
-								for (int i = 0 ; i < PostEmergency.length ; i++) {
-									System.out.println(PostEmergency[i]);
+								Emergency = scanner.nextLine();
+								if(Difficulty.equals("Immediately Needed") || Difficulty.equals("Highly Needed") ) {
+									System.out.println("Invalid Urgency for Easy Difficulty post");
+									PostTF = false;
 								}
-									//initialize post tag array to size 3 size its easy post
-									postTags = new String[3];
-									//add difficulty to the first tag
-									postTags[0] = "Easy";
-									// write post tag to the txt file:
-									Write(Destination ,"Post Tags: ");
-									Write(Destination , postTags[0]);
-									// for loop to add tags to list and to write to the file
-									for( int i=1 ; i< postTags.length ; i++) {
-										// adding the rest of the tags
-										String TagName = scanner.nextLine();
-										System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
-										if( TagName.equals("Immediately Needed") || TagName.equals("Highly Needed")  ) {
-											System.out.println("Invalid Tag for Easy Difficulty post");
-											PostTF = false;
+								
+								
+								else{			
+										for (int i = 0 ; i < PostEmergency.length ; i++) {
+											System.out.println(PostEmergency[i]);
 										}
-										else if (TagName.equals("None")) {
-											//skip does nothing
-										}
-										else if(TagName.equals("Stop")) {
-											break;
-										}
-										else {
-											postTags[i] = TagName;
-											Write(Destination ,postTags[i]);
-										}
+											//initialize post tag array to size 3 size its easy post
+											postTags = new String[3];
+											// write post tag to the txt file:
+											Write(Destination ,"Post Tags: ");
+											// for loop to add tags to list and to write to the file
+											for( int i=0 ; i< postTags.length ; i++) {
+												// adding the rest of the tags
+												String TagName = scanner.nextLine();
+												System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
+												boolean cap = false;
+												//for loop to check string if any chars
+												for (int j =0 ; j < TagName.length(); j++) {
+													if(Character.isUpperCase(TagName.charAt(j))) {
+														cap = true;
+													}
+												}
+												
+												if( (TagName.length() >= 2 && TagName.length()<=10) || cap == true) {
+													System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+													PostTF = false;
+												}
+												else if (TagName.equals("None")) {
+													//skip does nothing
+												}
+												else if(TagName.equals("Stop")) {
+													break;
+												}
+												else {
+													postTags[i] = TagName;
+													Write(Destination ,postTags[i]);
+												}
+											}
 									}
 									
 									// new line
@@ -132,50 +148,63 @@ public class Post {
 								for (int i = 0 ; i < PostEmergency.length ; i++) {
 									System.out.println(PostEmergency[i]);
 								}
-								//initialize post tag array to size 5 
-								postTags = new String[5];
-								//add difficulty to the first tag
-								postTags[0] = Difficulty;
-								// write post tag to the txt file:
-								Write(Destination ,"Post Tags: ");
-								Write(Destination , postTags[0]);
-								// adding the rest of the tags
-								for( int i=1 ; i< postTags.length ; i++) {
-									String TagName = scanner.nextLine();
-									System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
-									if( TagName.equals("Ordinary")) {
-										System.out.println("Invalid Tag for Easy Difficulty post");
-										PostTF = false;
-									}
-									else if (TagName.equals("None")) {
-										//skip does nothing
-									}
-									else if(TagName.equals("Stop")) {
-										break;
-									}
-									else {
-										postTags[i] = TagName;
-										Write(Destination ,postTags[i]);
-									}
-								}
-								
-								// new line
-								Write(Destination, "\n" );
-
-									// writing body // 
-								System.out.println("Enter Post Body :");
-								postBody = scanner.nextLine();
-								if(postBody.equals("string300")) {
-									Write(Destination, string300 );
-								}
-								else if( postBody.length() < 300 ) {
-									System.out.println("Body size less than 300 characters");
+								Emergency = scanner.nextLine();
+								if(Difficulty.equals("Ordinary")  ) {
+									System.out.println("Invalid Urgency for Very Difficult/Difficult post");
 									PostTF = false;
 								}
-								else {
-									Write(Destination, postBody );
-								}
 								
+								else {
+										//initialize post tag array to size 5 
+										postTags = new String[5];
+										//add difficulty to the first tag
+										// write post tag to the txt file:
+										Write(Destination ,"Post Tags: ");
+										// adding the rest of the tags
+										for( int i=0 ; i< postTags.length ; i++) {
+											String TagName = scanner.nextLine();
+											System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
+											boolean cap = false;
+											//for loop to check string if any chars
+											for (int j =0 ; j < TagName.length(); j++) {
+												if(Character.isUpperCase(TagName.charAt(j))) {
+													cap = true;
+												}
+											}
+											
+											if( (TagName.length() >= 2 && TagName.length()<=10) || cap == true) {
+												System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+												PostTF = false;
+											}
+											else if (TagName.equals("None")) {
+												//skip does nothing
+											}
+											else if(TagName.equals("Stop")) {
+												break;
+											}
+											else {
+												postTags[i] = TagName;
+												Write(Destination ,postTags[i]);
+											}
+										}
+										
+										// new line
+										Write(Destination, "\n" );
+		
+											// writing body // 
+										System.out.println("Enter Post Body :");
+										postBody = scanner.nextLine();
+										if(postBody.equals("string300")) {
+											Write(Destination, string300 );
+										}
+										else if( postBody.length() < 300 ) {
+											System.out.println("Body size less than 300 characters");
+											PostTF = false;
+										}
+										else {
+											Write(Destination, postBody );
+										}
+								}
 							}
 							
 							else {
@@ -193,10 +222,10 @@ public class Post {
 							else {
 								Write(Destination, postBody );
 							}
-							}
+						}
 							
 						}
-			else {
+			else{
 			// error post title being too small or too large
 			System.out.println("Post Title Size outside of 300 characters or smaller than 10 characters");
 				PostTF = false;
@@ -216,7 +245,7 @@ public class Post {
 		int  capacity = 0;
 					// set capacity of post comment array based on tags
 				for(int i = 0 ; i < postTags.length ; i++ ) {
-						if(postTags[i].equals("Easy") || postTags[i].equals("Ordinary") ) {
+						if(Type.equals("Easy") || Emergency.equals("Ordinary") ) {
 							// if easy or ordinary set comment size to 3
 							capacity = 3;
 					}
