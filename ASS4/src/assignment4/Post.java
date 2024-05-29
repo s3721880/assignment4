@@ -92,6 +92,7 @@ public class Post {
 										}
 											//initialize post tag array to size 3 size its easy post
 											postTags = new String[3];
+											int numtags = 0;
 											// write post tag to the txt file:
 											Write(Destination ,"Post Tags: ");
 											// for loop to add tags to list and to write to the file
@@ -100,7 +101,7 @@ public class Post {
 												String TagName = scanner.nextLine();
 												System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 												boolean cap = false;
-												//for loop to check string if any chars
+												//for loop to check string if any chars is upper cased
 												for (int j =0 ; j < TagName.length(); j++) {
 													if(Character.isUpperCase(TagName.charAt(j))) {
 														cap = true;
@@ -119,20 +120,34 @@ public class Post {
 												}
 												else {
 													postTags[i] = TagName;
-													Write(Destination ,postTags[i]);
+													numtags++;
 												}
 											}
+											// if number of tags 2 or more write to destination
+											if(numtags >= 2) {
+											for(int i = 0; i< postTags.length ;i ++) {
+												if( postTags[i].length() > 0  ){
+													Write(Destination , postTags[i]);
+												}
+											}
+											}
+											// set PostTF = false
+											else {
+												PostTF = false;
+											}
 									}
-									
+
 									// new line
 									Write(Destination, "\n" );
 									
 										// writing body // 
 									System.out.println("Enter Post Body :");
 									postBody = scanner.nextLine();
+									//this is for debugging to see if it write to the txt file
 									if(postBody.equals("string300")) {
 										Write(Destination, string300 );
 									}
+									// check to see if the  length of body is less than 250
 									else if( postBody.length() < 250) {
 										System.out.println("Body size less than 250 characters");
 										PostTF = false;
@@ -157,7 +172,8 @@ public class Post {
 								else {
 										//initialize post tag array to size 5 
 										postTags = new String[5];
-										//add difficulty to the first tag
+										// number of tags in post tag that has been occupied 
+										int numtags = 0;
 										// write post tag to the txt file:
 										Write(Destination ,"Post Tags: ");
 										// adding the rest of the tags
@@ -165,7 +181,7 @@ public class Post {
 											String TagName = scanner.nextLine();
 											System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 											boolean cap = false;
-											//for loop to check string if any chars
+											//for loop to check string if any chars is upper cased
 											for (int j =0 ; j < TagName.length(); j++) {
 												if(Character.isUpperCase(TagName.charAt(j))) {
 													cap = true;
@@ -184,19 +200,34 @@ public class Post {
 											}
 											else {
 												postTags[i] = TagName;
-												Write(Destination ,postTags[i]);
+												numtags++;
 											}
 										}
+										// if number of tags 2 or more write to destination
+										if(numtags >= 2) {
+										for(int i = 0; i< postTags.length ;i ++) {
+											if( postTags[i].length() > 0  ){
+												Write(Destination , postTags[i]);
+											}
+										}
+										}
+										// set PostTF = false
+										else {
+											PostTF = false;
+										}
 										
+									}	
 										// new line
 										Write(Destination, "\n" );
 		
 											// writing body // 
 										System.out.println("Enter Post Body :");
 										postBody = scanner.nextLine();
+										//debugging purposes
 										if(postBody.equals("string300")) {
 											Write(Destination, string300 );
 										}
+										// check to see if the  length of body is less than 250
 										else if( postBody.length() < 300 ) {
 											System.out.println("Body size less than 300 characters");
 											PostTF = false;
@@ -204,11 +235,73 @@ public class Post {
 										else {
 											Write(Destination, postBody );
 										}
-								}
 							}
 							
 							else {
+		
 								System.out.println("Wrong Difficulty Entered");
+								
+								System.out.println("Enter Urgency of Post :");
+								for (int i = 0 ; i < PostEmergency.length ; i++) {
+									System.out.println(PostEmergency[i]);
+								}
+								Emergency = scanner.nextLine();
+								if(Difficulty.equals("Ordinary") || Difficulty.equals("Very Difficult") ||  Difficulty.equals("Difficult") ) {
+								//initialize post tag array to size 5 
+								postTags = new String[5];
+								// number of tags in post tag that has been occupied 
+								int numtags = 0;
+								// write post tag to the txt file:
+								Write(Destination ,"Post Tags: ");
+								// adding the rest of the tags
+								for( int i=0 ; i< postTags.length ; i++) {
+									String TagName = scanner.nextLine();
+									System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
+									boolean cap = false;
+									//for loop to check string if any chars is upper cased
+									for (int j =0 ; j < TagName.length(); j++) {
+										if(Character.isUpperCase(TagName.charAt(j))) {
+											cap = true;
+										}
+									}
+									
+									if( (TagName.length() >= 2 && TagName.length()<=10) || cap == true) {
+										System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+										PostTF = false;
+									}
+									else if (TagName.equals("None")) {
+										//skip does nothing
+									}
+									else if(TagName.equals("Stop")) {
+										break;
+									}
+									else {
+										postTags[i] = TagName;
+										numtags++;
+									}
+								}
+								// if number of tags 2 or more write to destination
+								if(numtags >= 2) {
+								for(int i = 0; i< postTags.length ;i ++) {
+									if( postTags[i].length() > 0  ){
+										Write(Destination , postTags[i]);
+									}
+								}
+								
+								}
+								// set PostTF = false
+								else {
+									PostTF = false;
+								}
+							}
+								//invalid urgency
+								else {
+									System.out.println("Invalid Urgency for post");
+									PostTF = false;
+								}
+								// new line
+								Write(Destination, "\n" );
+								
 								// writing body // 
 							System.out.println("Enter Post Body :");
 							postBody = scanner.nextLine();
@@ -221,10 +314,10 @@ public class Post {
 							}
 							else {
 								Write(Destination, postBody );
-							}
+							}	
 						}
 							
-						}
+					}
 			else{
 			// error post title being too small or too large
 			System.out.println("Post Title Size outside of 300 characters or smaller than 10 characters");
@@ -233,6 +326,7 @@ public class Post {
 						
 		return PostTF;
 	}	
+	
 	
 	public boolean addComment( ) {
 		
@@ -278,7 +372,6 @@ public class Post {
 									if(Comment.isEmpty()) {
 										wordcount = 0;
 										System.out.println("Comment word size not within 4 and 10 words");
-										break;
 									}
 									// check if first letter is capital or not
 									else if(!Character.isUpperCase(Comment.charAt(0))) {
