@@ -336,6 +336,7 @@ public class Post {
 		// destination String for file creation
 		String Destination = DatabasePath + "Comment" + Integer.toString(postID) + text;
 		Create(Destination);
+		Boolean CommentTF = false;
 		int  capacity = 0;
 					// set capacity of post comment array based on tags
 				for(int i = 0 ; i < postTags.length ; i++ ) {
@@ -376,7 +377,7 @@ public class Post {
 									// check if first letter is capital or not
 									else if(!Character.isUpperCase(Comment.charAt(0))) {
 										System.out.println("First Letter Not Capital in the comment");
-										return false;
+										CommentTF = false;
 									}
 									else {
 										wordcount = Comment.split("\\s+").length;
@@ -395,9 +396,10 @@ public class Post {
 										}
 										
 									}
-					}			
+					}
+						CommentTF = true;
 				}
-	return true;
+	return CommentTF ;
  } 
 	
 	
