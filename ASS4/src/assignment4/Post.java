@@ -353,7 +353,7 @@ public class Post {
 					String Comment;
 					int count = 0;
 					// printing postComment size for debugging
-					System.out.println(postComments.size());
+			//		System.out.println(postComments.size());
 		  while ( count < capacity ) {
 						System.out.println("Enter Comment " + (count+1) + " : (type 'leave' to stop adding comments)");
 						Comment = scanner.nextLine();
