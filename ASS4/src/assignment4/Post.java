@@ -19,8 +19,8 @@ public class Post {
 	private  ArrayList <String> postComments = new ArrayList<>();
 	// string of to test body
 	private  String string300 = "A character can be any letter, number, punctuation, special character, or space. Each of these characters takes up one byte of space in a computer's memory. Some Unicode characters,"
-			+ "																														 like emojis and some letters in non-Latin alphabets, "
-			+ "                                     take up two bytes of space and therefore count as two characters. Use our character counter tool below for an accurate count of your characters.";
+			+ "	like emojis and some letters in non-Latin alphabets, "
+			+ " take up two bytes of space and therefore count as two characters. Use our character counter tool below for an accurate count of your characters.";
 	//scanner
 	 Scanner scanner = new Scanner(System.in);
 	 Post(int PostID) {
@@ -79,6 +79,9 @@ public class Post {
 							if( Difficulty.equals("Easy")) {		
 								// Print out urgency choices
 								System.out.println("Enter Urgency of Post");
+								for (int i = 0 ; i < PostEmergency.length ; i++) {
+									System.out.println(PostEmergency[i]);
+								}
 								Emergency = scanner.nextLine();
 								if(Difficulty.equals("Immediately Needed") || Difficulty.equals("Highly Needed") ) {
 									System.out.println("Invalid Urgency for Easy Difficulty post");
