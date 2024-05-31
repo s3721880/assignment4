@@ -108,16 +108,16 @@ public class Post {
 													}
 												}
 												
-												if( (TagName.length() < 2 || TagName.length() > 10) || cap == true) {
-													System.out.println("Invalid Tag (uppercase or  over 10 characters)");
-													PostTF = false;
-												}
-												else if (TagName.equals("None")) {
+												 if (TagName.equals("None")) {
 													//skip does nothing
 												}
 												else if(TagName.equals("Stop")) {
 													break;
 												}
+												else if( (TagName.length() < 2 || TagName.length() > 10) || cap == true) {
+														System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+														PostTF = false;
+													}
 												else {
 													postTags[i] = TagName;
 													numtags++;
@@ -188,16 +188,16 @@ public class Post {
 												}
 											}
 											
-											if( (TagName.length() < 2 || TagName.length() > 10) || cap == true) {
-												System.out.println("Invalid Tag (uppercase or  over 10 characters)");
-												PostTF = false;
-											}
-											else if (TagName.equals("None")) {
+											 if (TagName.equals("None")) {
 												//skip does nothing
 											}
 											else if(TagName.equals("Stop")) {
 												break;
 											}
+											else if( (TagName.length() < 2 || TagName.length() > 10) || cap == true) {
+													System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+													PostTF = false;
+												}
 											else {
 												postTags[i] = TagName;
 												numtags++;
@@ -265,16 +265,16 @@ public class Post {
 										}
 									}
 									
-									if( (TagName.length() < 2 && TagName.length() > 10) || cap == true) {
-										System.out.println("Invalid Tag (uppercase or  over 10 characters)");
-										PostTF = false;
-									}
-									else if (TagName.equals("None")) {
+								     if (TagName.equals("None")) {
 										//skip does nothing
 									}
 									else if(TagName.equals("Stop")) {
 										break;
 									}
+									else if( (TagName.length() < 2 && TagName.length() > 10) || cap == true) {
+											System.out.println("Invalid Tag (uppercase or  over 10 characters)");
+											PostTF = false;
+										}
 									else {
 										postTags[i] = TagName;
 										numtags++;
