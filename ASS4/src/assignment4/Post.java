@@ -188,7 +188,7 @@ public class Post {
 												}
 											}
 											
-											if( (TagName.length() >= 2 && TagName.length()<=10) || cap == true) {
+											if( (TagName.length() < 2 || TagName.length() > 10) || cap == true) {
 												System.out.println("Invalid Tag (uppercase or  over 10 characters)");
 												PostTF = false;
 											}
@@ -265,7 +265,7 @@ public class Post {
 										}
 									}
 									
-									if( (TagName.length() >= 2 && TagName.length()<=10) || cap == true) {
+									if( (TagName.length() < 2 && TagName.length() > 10) || cap == true) {
 										System.out.println("Invalid Tag (uppercase or  over 10 characters)");
 										PostTF = false;
 									}
