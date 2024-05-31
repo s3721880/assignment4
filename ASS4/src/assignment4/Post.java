@@ -90,9 +90,6 @@ public class Post {
 								
 								
 								else{			
-										for (int i = 0 ; i < PostEmergency.length ; i++) {
-											System.out.println(PostEmergency[i]);
-										}
 											//initialize post tag array to size 3 size its easy post
 											postTags = new String[3];
 											int numtags = 0;
@@ -100,9 +97,9 @@ public class Post {
 											Write(Destination ,"Post Tags: ");
 											// for loop to add tags to list and to write to the file
 											for( int i=0 ; i< postTags.length ; i++) {
+												System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 												// adding the rest of the tags
 												String TagName = scanner.nextLine();
-												System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
 												boolean cap = false;
 												//for loop to check string if any chars is upper cased
 												for (int j =0 ; j < TagName.length(); j++) {
@@ -181,8 +178,8 @@ public class Post {
 										Write(Destination ,"Post Tags: ");
 										// adding the rest of the tags
 										for( int i=0 ; i< postTags.length ; i++) {
-											String TagName = scanner.nextLine();
 											System.out.println("enter Tag ( 'None' to Skip and 'Stop'  to stop adding) :");
+											String TagName = scanner.nextLine();
 											boolean cap = false;
 											//for loop to check string if any chars is upper cased
 											for (int j =0 ; j < TagName.length(); j++) {
